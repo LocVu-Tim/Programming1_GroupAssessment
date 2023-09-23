@@ -66,7 +66,6 @@ public class AdminVehicle {
         ArrayList<String[]> user = new ArrayList<>();
         Scanner fileVehicles = new Scanner(new File("./src/database/vehicles.txt"));
 
-        // Use tokenizer to pick data
         while (fileVehicles.hasNext()) {
             String[] vehicleData = new String[3];
             String line = fileVehicles.nextLine();
@@ -74,15 +73,19 @@ public class AdminVehicle {
             String ID = stringTokenizer.nextToken();
             String Type = stringTokenizer.nextToken();
             String carryingCapacity = stringTokenizer.nextToken();
-            vehicleData = new String[]{ID, Type, carryingCapacity};
-            user.add(vehicleData); // User input choice
-        }
+            String currentFuel = stringTokenizer.nextToken();
+            String fuelCapacity = stringTokenizer.nextToken();
+            String currentPort = stringTokenizer.nextToken();
+            vehicleData = new String[]{ID, Type, carryingCapacity, currentFuel, fuelCapacity, currentPort};
+            user.add(vehicleData);
 
+        }
+        // Print out the table contain all the product information.
         TableInterface.setShowVerticalLines(true);
-        TableInterface.setHeaders("OPTION", "ID", "Type", "Carrying Capacity");  // Option choices
+        TableInterface.setHeaders("ID", "Type", "Carrying Capacity", "Current Fuel", "Fuel Capacity", "Current Port");
 
         for (int i = 1; i < user.size(); i++) {
-            TableInterface.addRow(String.valueOf(i), user.get(i)[0], user.get(i)[1], user.get(i)[2]);
+            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
         }
 
         TableInterface.print();
