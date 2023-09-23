@@ -26,10 +26,10 @@ Container Port Management System project was for COSC2081 Programming 1 at RMIT 
 
 Container Port Management System project is designed to manage and simulate container port operations in a virtual setting. This project aims to solve the growing traffic and capacity demand in container ports worldwide by substituting an effective and adaptable digital solution for conventional paper-based methods.
 
-### IDE 
+### Project IDE
 IntelliJ IDEA Ultimate 2023
 
-### Structure
+### Project Structure
 ```bash
 .
 └── Group_Work/
@@ -89,6 +89,23 @@ IntelliJ IDEA Ultimate 2023
         │   └── PMVehicle
         └── Main
 
+```
+
+## Test Accounts
+Admin
+```bash
+ username: admin
+ password: Admin1234
+```
+Port Manager 1
+```bash
+username: loc  
+password: 123456789
+```
+Port Manager 2
+```bash
+username: test  
+password: 123
 ```
 
 
