@@ -151,7 +151,6 @@ public class PMPort {
 
         return table;
     }
-
     public PMPort(String id) {
         this.id = id.trim();
         getPortData();
@@ -162,7 +161,6 @@ public class PMPort {
         this.capacity = capacity;
         this.landingAbility = landingAbility;
     }
-
     private void getPortData(){
         LineFilters lineFilters = new LineFilters();
         lineFilters.addFilter(1,  this.id,FiltersType.INCLUDE);
@@ -182,15 +180,12 @@ public class PMPort {
             this.longitude = parts[5];
         }
     }
-
     public String getLandingAbility() {
         return landingAbility;
     }
-
     public String getId() {
         return id;
     }
-
     public String toString(){
         return  id + ", " + name + ", " + capacity + ", " + landingAbility;
     }
