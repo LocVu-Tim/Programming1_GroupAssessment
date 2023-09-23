@@ -1,8 +1,96 @@
 # Programming1_GroupAssessment
+
+## Project Files
 - [GitHub Repository](https://github.com/LocVu-Tim/Programming1_GroupAssessment.git)
 - [UML Class Diagram](https://drive.google.com/file/d/1jrBE8GyJVyBArJD0C8ZUnTL5ZnXUAmEX/view?usp=sharing)
 - [Report Paper]()
 - [Video Demonstration]()
+
+## Project Contribution
+| Student Name and Snumber         | Contribution  | Role and Task                   |
+| ---------------- |-------------------------|--------------------------------------|
+|Vu Loc - S3891483 | 35%                     | Admin System and Team Leader         |
+|Nguyen Minh Tri - s3924683| 35%                     | Port Manager System and Team Support |
+|Huynh Bao Khang - s3911723| 8%                      | Port Manager Feature                 |
+|Huynh Nguyen Thien Minh - s3978742| 2%                      | Port Manager Feature                 |
+|Nguyen Quoc Trung - s3929342| 20%                     | Report Paper and Port Manager Feature |
+
+## Project Detail
+Container Port Management System project was for COSC2081 Programming 1 at RMIT University Vietnam semester 2023B
+- Saigon South Campus (SGS) in Vietnam
+- Lecturer: Mr. Minh Thanh Vu, Dr. Phong Ngo
+- Started date: Sep. 8, 2023
+- Finished date: Sep. 24, 2023
+
+### Project Description
+
+Container Port Management System project is designed to manage and simulate container port operations in a virtual setting. This project aims to solve the growing traffic and capacity demand in container ports worldwide by substituting an effective and adaptable digital solution for conventional paper-based methods.
+
+### IDE 
+IntelliJ IDEA Ultimate 2023
+
+### Structure
+```bash
+.
+└── Group_Work/
+    └── src/
+        ├── Container/
+        │   ├── nice
+        │   ├── AdminContainer
+        │   ├── ContainerType
+        │   └── PMContainer
+        ├── Database/
+        │   ├── containers.txt
+        │   ├── PMports.txt
+        │   ├── PMtrips.txt
+        │   ├── PMvehicles.txt
+        │   ├── portManagers.txt
+        │   ├── ports.txt
+        │   ├── trips.txt
+        │   └── vehicles.txt
+        ├── interfaces/
+        │   ├── abstracts/
+        │   │   └── interface
+        │   ├── builders/
+        │   │   ├── OptionsInterface
+        │   │   ├── PromptsInterface
+        │   │   └── TableInterface
+        │   └── io
+        ├── LinesHandler/
+        │   ├── FiltersType
+        │   ├── LineFilters
+        │   └── LinesHandler
+        ├── Menu/
+        │   ├── AdminMenu
+        │   ├── Authentication
+        │   └── PortManagerMenu
+        ├── Port/
+        │   ├── AdminPort
+        │   └── PMPort
+        ├── Resource/
+        │   ├── ReadDatabase
+        │   ├── TableInterface
+        │   ├── UserInput
+        │   └── WriteFile
+        ├── Tools/
+        │   └── Tools
+        ├── Trip/
+        │   ├── AdminTrips
+        │   └── PMTrip
+        ├── User/
+        │   ├── abstracts/
+        │   │   └── User
+        │   ├── Account
+        │   ├── Admin
+        │   └── PortManager
+        ├── users.abstracts
+        ├── Vehicle/
+        │   ├── AdminVehicle
+        │   └── PMVehicle
+        └── Main
+
+```
+
 
 ## Acknowledgement
 - [IntelliJ IDEA | Getting Started](https://www.jetbrains.com/help/idea/getting-started.html)
@@ -18,11 +106,3 @@
 - [ChatGPT]()
 - [Claude AI]()
 
-## Contribution
-| Student Name and Snumber             | Contribution Score                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Vu Loc - S3891483 | 35% |
-|Nguyen Minh Tri - s3924683| 35% |
-| Huynh Bao Khang - s3911723| 10% |
-| Huynh Nguyen Thien Minh - s3978742| 10% |
-| Nguyen Quoc Trung - s3929342| 10% |
