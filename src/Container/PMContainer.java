@@ -115,13 +115,13 @@ public class PMContainer {
         
         if(addContainerToPort){
             if(PMPort.canStoreContainer(portId,containerWeight)){
-                line = id + ", " + weight + ", " + type + "," + portId + "," + "null";
+                line = id + "," + weight +"Kg" + "," + type + "," + portId + "," + "null";
                 addContainer = true;
             }else{
                 System.out.println("Can't add the container because the port reached max capacity!");
             }
         }else{
-            line = id + ", " + weight + ", " + type + "," + "null" + "," + "null";
+            line = id + "," + weight + "," + type + "," + "null" + "," + "null";
             addContainer = true;
         }
 

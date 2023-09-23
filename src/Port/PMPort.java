@@ -187,7 +187,7 @@ public class PMPort {
         return id;
     }
     public String toString(){
-        return  id + ", " + name + ", " + capacity + ", " + landingAbility;
+        return  id + "," + name + "," + capacity + "," + landingAbility;
     }
     private void updatePort(){
         OptionsInterface updateInterface = new OptionsInterface("update","What update for the port?",4);
