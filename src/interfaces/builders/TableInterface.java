@@ -19,7 +19,7 @@ public class TableInterface extends Interface {
         this.delimiter = delimiter;
     }
     private String[] getPartsFromLine(String line){
-        //Break a line data into many String[] parts
+        //Break a line data into many parts
         return line.split(delimiter);
     }
     private boolean hasSameColsLength(String[] parts){

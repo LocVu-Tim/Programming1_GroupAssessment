@@ -1,16 +1,24 @@
 package Menu;
 
 import Container.AdminContainer;
+import Container.PMContainer;
+import LinesHandler.FiltersType;
+import LinesHandler.LineFilters;
+import Port.PMPort;
 import Resource.ReadDatabase;
 import Resource.UserInput;
 import Port.AdminPort;
+import Trip.PMTrip;
 import Vehicle.AdminVehicle;
 import User.Admin;
+import Vehicle.PMVehicle;
+import interfaces.builders.OptionsInterface;
 
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -200,7 +208,11 @@ public class AdminMenu {
                 System.out.println("3. Remove container");
                 System.out.println("4. Update containers' weight");
                 System.out.println("5. Update containers' type");
-                System.out.println("6. Back to homepage");
+                System.out.println("6. Load container");
+                System.out.println("7. Unload container");
+                System.out.println("8. Create trip");
+                System.out.println("9. Complete Trip");
+                System.out.println("10. Back to homepage");
                 String containerOptions = UserInput.rawInput();
 
                 switch (containerOptions) {
@@ -209,7 +221,6 @@ public class AdminMenu {
                         Container.getAllContainerInfo();
                         TimeUnit.SECONDS.sleep(1);
                         adminMenu.viewHomepage();
-
                         //Create new container
                     case "2":
                         User.addContainer();
@@ -234,6 +245,7 @@ public class AdminMenu {
 
                         //Update vehicle's capacity
                     case "5":
+                        /*
                         Container.getAllContainerInfo();
                         System.out.print("Enter container's ID to update: ");
                         String ctId = scanner.nextLine();
@@ -241,9 +253,58 @@ public class AdminMenu {
                         String type = scanner.nextLine();
                         Vehicle.updateVehicleType("./src/database/vehicles.txt", type, ctId);
                         adminMenu.viewHomepage();
-
+                        */
                         //Back to homepage
                     case "6":
+                        OptionsInterface portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
+                        HashMap<String, String> interfaceData = portsInterface.run(null);
+
+                        if(!interfaceData.get("option").equals("Return")){
+                            String portLine = interfaceData.get("data");
+                            String[] portParts = portLine.split(",");
+
+                            String portId = portParts[PMPort.colId-1];
+                            PMVehicle.loadContainer(portId);
+
+                            //PMVehicle.unloadContainer(portId);
+                        }
+                    case "7":
+                        portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
+                        interfaceData = portsInterface.run(null);
+
+                        if(!interfaceData.get("option").equals("Return")){
+                            String portLine = interfaceData.get("data");
+                            String[] portParts = portLine.split(",");
+
+                            String portId = portParts[PMPort.colId-1];
+
+                            PMVehicle.unloadContainer(portId);
+                        }
+                    case "8":
+                        portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
+                        interfaceData = portsInterface.run(null);
+
+                        if(!interfaceData.get("option").equals("Return")){
+                            String portLine = interfaceData.get("data");
+                            String[] portParts = portLine.split(",");
+
+                            String portId = portParts[PMPort.colId-1];
+
+                            PMTrip.createATrip(portId);
+                        }
+                    case "9":
+                        portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
+                        interfaceData = portsInterface.run(null);
+
+                        if(!interfaceData.get("option").equals("Return")){
+                            String portLine = interfaceData.get("data");
+                            String[] portParts = portLine.split(",");
+
+                            String portId = portParts[PMPort.colId-1];
+
+                            PMTrip.completeTrip(portId);
+                        }
+                    case "10":
                         adminMenu.viewHomepage();
                 }
 

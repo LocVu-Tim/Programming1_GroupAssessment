@@ -115,13 +115,13 @@ public class PMContainer {
         
         if(addContainerToPort){
             if(PMPort.canStoreContainer(portId,containerWeight)){
-                line = id + ", " + weight + ", " + type + "," + portId + "," + "null";
+                line = id + "," + weight +"Kg" + "," + type + "," + portId + "," + "null";
                 addContainer = true;
             }else{
                 System.out.println("Can't add the container because the port reached max capacity!");
             }
         }else{
-            line = id + ", " + weight + ", " + type + "," + "null" + "," + "null";
+            line = id + "," + weight + "," + type + "," + "null" + "," + "null";
             addContainer = true;
         }
 
@@ -238,7 +238,7 @@ public class PMContainer {
                         while (true){
                             System.out.println("Enter weight(Example: 5.9Kg): ");
 
-                            String inputResult = input.nextLine().trim();;
+                            String inputResult = input.nextLine().trim();
 
                             if(inputResult.matches("\\d+.\\d+") ){
                                 parts[1] = inputResult + "Kg";
@@ -251,7 +251,7 @@ public class PMContainer {
                                 System.out.println("Weight must follow format: 0.0");
 
                                 System.out.print("Return?(Y/N): ");
-                                inputResult = input.nextLine().trim();;
+                                inputResult = input.nextLine().trim();
 
                                 if(inputResult.matches("[yY]")){
                                     keepRunning = false;
@@ -301,7 +301,7 @@ public class PMContainer {
                                     System.out.println("Failed to update container! port reached maximum capacity");
 
                                     System.out.print("Return?(Y/N): ");
-                                    String inputResult = input.nextLine().trim();;
+                                    String inputResult = input.nextLine().trim();
 
                                     if(inputResult.equals("Y") || inputResult.equals("y")){
                                         keepRunning = false;

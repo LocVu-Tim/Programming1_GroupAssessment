@@ -151,7 +151,6 @@ public class PMPort {
 
         return table;
     }
-
     public PMPort(String id) {
         this.id = id.trim();
         getPortData();
@@ -162,7 +161,6 @@ public class PMPort {
         this.capacity = capacity;
         this.landingAbility = landingAbility;
     }
-
     private void getPortData(){
         LineFilters lineFilters = new LineFilters();
         lineFilters.addFilter(1,  this.id,FiltersType.INCLUDE);
@@ -182,17 +180,14 @@ public class PMPort {
             this.longitude = parts[5];
         }
     }
-
     public String getLandingAbility() {
         return landingAbility;
     }
-
     public String getId() {
         return id;
     }
-
     public String toString(){
-        return  id + ", " + name + ", " + capacity + ", " + landingAbility;
+        return  id + "," + name + "," + capacity + "," + landingAbility;
     }
     private void updatePort(){
         OptionsInterface updateInterface = new OptionsInterface("update","What update for the port?",4);
@@ -439,11 +434,11 @@ public class PMPort {
     public void handleTripsOptions(String option) {
         switch (option){
             case "Create a trip": {
-                PMTrip.createATrip(this);
+                PMTrip.createATrip(this.id);
                 break;
             }
            case "Complete a trip": {
-                PMTrip.completeTrip(this);
+                PMTrip.completeTrip(this.id);
                 break;
             }
             case "Display all trips from the port": {
@@ -493,33 +488,66 @@ public class PMPort {
         switch (option){
             case "Profile": {
                 Scanner input = new Scanner(System.in);
+
+                System.out.println("Enter username:");
+                String username = input.nextLine().trim();
+
+                System.out.println("Enter password:");
+                String password = input.nextLine().trim();
+
+
+                System.out.println("Profile Information:");
+                System.out.println("Username: " + username);
+                System.out.println("Password: " + password);
+
                 break;
             }
             case "Port": {
-                System.out.println("Enter id: " + this.id);
-                System.out.println("Landing ability is" + this.landingAbility);
+                System.out.println("Port ID: " + this.id);
+                System.out.println("Port Name: " + this.name);
+                System.out.println("Capacity: " + this.capacity);
+                System.out.println("Landing Ability: " + this.landingAbility);
+                System.out.println("Latitude: " + this.latitude);
+                System.out.println("Longitude: " + this.longitude);
                 break;
             }case "Containers": {
                 LineFilters filters = new LineFilters();
                 filters.addFilter(PMContainer.colPortId, this.id, FiltersType.INCLUDE);
                 ArrayList<String> lines = LinesHandler.getLinesFromDatabase(PMContainer.containersFilePath, filters);
 
-                for(String line: lines){
+                System.out.println("Containers in Port " + this.id + ":");
+                for (String line : lines) {
                     String[] parts = line.split(",");
-                    System.out.println("Id is " + parts[0]);
+                    System.out.println("Container ID: " + parts[0]);
+
                 }
                 break;
             }
             case "Vehicles": {
-                //
+                LineFilters filters = new LineFilters();
+                filters.addFilter(PMVehicle.colCurrentPortId, this.id, FiltersType.INCLUDE);
+                ArrayList<String> vehicleLines = LinesHandler.getLinesFromDatabase(PMVehicle.vehiclesFilePath, filters);
+
+                System.out.println("Vehicles in Port " + this.id + ":");
+                for (String vehicleLine : vehicleLines) {
+                    String[] parts = vehicleLine.split(",");
+                    System.out.println("Vehicle ID: " + parts[0]);
+
+                }
+
                 break;
             }
             case "Trips": {
-                //
-                break;
-            }
-            case "Summary": {
-                //
+                LineFilters filters = new LineFilters();
+                filters.addFilter(PMTrip.colDepartPort, this.id, FiltersType.INCLUDE);
+                ArrayList<String> tripLines = LinesHandler.getLinesFromDatabase(PMTrip.tripsFilePath, filters);
+
+                System.out.println("Trips from Port " + this.id + ":");
+                for (String tripLine : tripLines) {
+                    String[] parts = tripLine.split(",");
+                    System.out.println("Trip ID: " + parts[0]);
+
+                }
                 break;
             }
         }

@@ -54,18 +54,20 @@ public class LinesHandler {
             }
 
             while ((fileLine = reader.readLine()) != null){
-                String[] parts = fileLine.split(",");
+                if(!fileLine.isEmpty()){
+                    String[] parts = fileLine.split(",");
 
-                boolean addLine;
+                    boolean addLine;
 
-                if(filters!= null){
-                    addLine = checkIfLineIsFiltered(filters, parts);
-                }else{
-                    addLine = true;
-                }
+                    if(filters!= null){
+                        addLine = checkIfLineIsFiltered(filters, parts);
+                    }else{
+                        addLine = true;
+                    }
 
-                if(addLine){
-                    lines.add(fileLine);
+                    if(addLine){
+                        lines.add(fileLine);
+                    }
                 }
             }
 
@@ -103,10 +105,12 @@ public class LinesHandler {
                     updateLine = true;
                 }
 
-                if(updateLine){
-                    content.append(line).append("\n");
-                }else{
-                    content.append(fileLine).append("\n");
+                if(!fileLine.isEmpty()){
+                    if(updateLine){
+                        content.append(line).append("\n");
+                    }else{
+                        content.append(fileLine).append("\n");
+                    }
                 }
             }
 
@@ -146,9 +150,8 @@ public class LinesHandler {
                 if(filters!= null){
                     deleteLine  =  checkIfLineIsFiltered(filters,parts);
                 }else{
-                    deleteLine = false;
+                    deleteLine = !fileLine.isEmpty();
                 }
-
                 if(!deleteLine){
                     content.append(fileLine).append("\n");
                 }
