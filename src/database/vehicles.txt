@@ -4,4 +4,3 @@ btr-02, Normal Truck 1, 7000kg, 56L, 1000000L, p-02
 btr-03, Tanker Truck 1, 7000kg, 56L, 2000000L, p-01
 s-04, Ship 1, 9000kg, 100L, 7000000L, p-01
 s-05, Ship 2, 8000kg, 90L, 70000000L, p-03
-

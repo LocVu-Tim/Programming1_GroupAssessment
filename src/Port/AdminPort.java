@@ -21,12 +21,16 @@ public class AdminPort {
     private String Name;
     private String Capacity;
     private String landingAbility;
+    private String Latitude;
+    private String Longitude;
 
-    public AdminPort(String ID, String Name, String Capacity, String landingAbility) {
+    public AdminPort(String ID, String Name, String Capacity, String landingAbility, String Latitude, String Longitude) {
         this.ID = ID;
         this.Name = Name;
         this.Capacity = Capacity;
         this.landingAbility = landingAbility;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
     }
 
     public AdminPort() {
@@ -45,16 +49,18 @@ public class AdminPort {
             String Name = stringTokenizer.nextToken();
             String Capacity = stringTokenizer.nextToken();
             String landingAbility = stringTokenizer.nextToken();
-            portData = new String[]{ID, Name, Capacity, landingAbility};
+            String Latitude = stringTokenizer.nextToken();
+            String Longitude = stringTokenizer.nextToken();
+            portData = new String[]{ID, Name, Capacity, landingAbility, Latitude, Longitude};
             user.add(portData);
 
         }
         // Print out the table contain all the product information.
         TableInterface.setShowVerticalLines(true);
-        TableInterface.setHeaders("ID", "Name", "Capacity", "landing Ability");
+        TableInterface.setHeaders("ID", "Name", "Capacity", "landing Ability", "Latitude", "Longitude");
 
         for (int i = 1; i < user.size(); i++) {
-            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3]);
+            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
         }
 
         TableInterface.print();
@@ -75,15 +81,18 @@ public class AdminPort {
             String Name = stringTokenizer.nextToken();
             String Capacity = stringTokenizer.nextToken();
             String landingAbility = stringTokenizer.nextToken();
-            portData = new String[]{ID, Name, Capacity, landingAbility};
-            user.add(portData); // User input choice
-        }
+            String Latitude = stringTokenizer.nextToken();
+            String Longitude = stringTokenizer.nextToken();
+            portData = new String[]{ID, Name, Capacity, landingAbility, Latitude, Longitude};
+            user.add(portData);
 
+        }
+        // Print out the table contain all the product information.
         TableInterface.setShowVerticalLines(true);
-        TableInterface.setHeaders("OPTION", "ID", "Name", "Capacity", "Landing Ability");  // Option choices
+        TableInterface.setHeaders("ID", "Name", "Capacity", "landing Ability", "Latitude", "Longitude");
 
         for (int i = 1; i < user.size(); i++) {
-            TableInterface.addRow(String.valueOf(i), user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3]);
+            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
         }
 
         TableInterface.print();
@@ -107,7 +116,7 @@ public class AdminPort {
         printWriter.close();
 
         for (String[] strings : database) {
-            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability", String.join(",", strings)); // Rewrite new data
+            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability, Latitude, Longitude", String.join(",", strings)); // Rewrite new data
         }
     }
 
@@ -127,7 +136,7 @@ public class AdminPort {
         printWriter.close();
 
         for (String[] strings : database) {
-            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability", String.join(",", strings)); // Rewrite new data
+            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability, Latitude, Longitude", String.join(",", strings)); // Rewrite new data
         }
     }
 
@@ -147,7 +156,7 @@ public class AdminPort {
         printWriter.close();
 
         for (String[] strings : database) {
-            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability", String.join(",", strings)); // Rewrite new data
+            WriteFile.rewriteFile(filepath, "ID, Name, Capacity, Landing Ability, Latitude, Longitude", String.join(",", strings)); // Rewrite new data
         }
     }
 }

@@ -35,7 +35,6 @@ public class Admin extends Account {
 
         Scanner scanner = new Scanner(System.in);
         PrintWriter printWriter;
-        AdminPort Port = new AdminPort();
 
         printWriter = new PrintWriter(new FileWriter("./src/database/ports.txt", true));
 
@@ -63,7 +62,13 @@ public class Admin extends Account {
         System.out.println("Enter landing ability (e.g: Truck Available / Truck Unavailable) : "); // Ask admin to input the port's landing availability
         String landingAbility = scanner.nextLine();
 
-        printWriter.println(ID + "," + name + "," + capacity + "," + landingAbility); // Write port's information to database
+        System.out.println("Enter port's latitude (e.g: 35.682839) : "); // Ask admin to input the port's latitude
+        String Latitude = scanner.nextLine();
+
+        System.out.println("Enter port's longitude (e.g: 139.759455) : "); // Ask admin to input the port's longitude
+        String Longitude = scanner.nextLine();
+
+        printWriter.println(ID + "," + name + "," + capacity + "," + landingAbility+ "," + Latitude+ "," + Longitude); // Write port's information to database
         printWriter.close();
         System.out.println("Addition successful");
     }
@@ -98,7 +103,7 @@ public class Admin extends Account {
 
         // write new data into database
         for (String[] obj : newDatabase) {
-            WriteFile.rewriteFile("./src/database/ports.txt", "#ID,Name,Capacity,LandingAbility", String.join(",", obj));
+            WriteFile.rewriteFile("./src/database/ports.txt", "#ID,Name,Capacity,LandingAbility, Latitude, Longitude", String.join(",", obj));
         }
         System.out.println("Deletion successful");
     }
