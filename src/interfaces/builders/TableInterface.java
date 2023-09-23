@@ -37,6 +37,9 @@ public class TableInterface extends Interface {
 
         return  true;
     }
+    public void clearRows(){
+        this.rows.clear();
+    }
     public boolean setRow(int index, String line){
         String[] parts = getPartsFromLine(line);
 
@@ -128,7 +131,6 @@ public class TableInterface extends Interface {
             }else{
                 leftSpacing = leftSpacing.repeat(spacing/ 2);
                 rightSpacing = rightSpacing.repeat(spacing/ 2);
-
             }
 
             table.append(leftSpacing);
