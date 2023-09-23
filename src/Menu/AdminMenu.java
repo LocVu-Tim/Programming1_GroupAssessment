@@ -297,15 +297,22 @@ public class AdminMenu {
                 String tripOptions = UserInput.rawInput();
 
                 switch (tripOptions) {
-
                     // Display all trips from the port
                     case "1":
                         Container.getAllContainerInfo();
                         TimeUnit.SECONDS.sleep(1);
                         adminMenu.viewHomepage();
-
-                    // Create new trip
+                    case "2":
+                          System.out.println(PMTrip.createTableFromDatabase(null));
+                          adminMenu.viewHomepage();
+                    case "3":
+                          PMTrip.displayAllTripsByGivenDay();
+                          adminMenu.viewHomepage();
+                    case "4":
+                         PMTrip.displayAllTripsByDaysRange();
+                         adminMenu.viewHomepage();
                     case "5":
+                        // Create new trip
                         OptionsInterface portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
                         HashMap<String, String> interfaceData = portsInterface.run(null);
 
@@ -331,11 +338,8 @@ public class AdminMenu {
 
                             PMTrip.completeTrip(portId);
                         }
-
                     case "7":
                         adminMenu.viewHomepage();
-
-
                 }
         }
     }
