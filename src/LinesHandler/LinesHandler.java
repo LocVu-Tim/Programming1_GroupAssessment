@@ -150,11 +150,7 @@ public class LinesHandler {
                 if(filters!= null){
                     deleteLine  =  checkIfLineIsFiltered(filters,parts);
                 }else{
-                    if(!fileLine.isEmpty()){
-                        deleteLine = true;
-                    }else{
-                        deleteLine = false;
-                    }
+                    deleteLine = !fileLine.isEmpty();
                 }
                 if(!deleteLine){
                     content.append(fileLine).append("\n");

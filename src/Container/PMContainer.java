@@ -238,7 +238,7 @@ public class PMContainer {
                         while (true){
                             System.out.println("Enter weight(Example: 5.9Kg): ");
 
-                            String inputResult = input.nextLine().trim();;
+                            String inputResult = input.nextLine().trim();
 
                             if(inputResult.matches("\\d+.\\d+") ){
                                 parts[1] = inputResult + "Kg";
@@ -251,7 +251,7 @@ public class PMContainer {
                                 System.out.println("Weight must follow format: 0.0");
 
                                 System.out.print("Return?(Y/N): ");
-                                inputResult = input.nextLine().trim();;
+                                inputResult = input.nextLine().trim();
 
                                 if(inputResult.matches("[yY]")){
                                     keepRunning = false;
@@ -301,7 +301,7 @@ public class PMContainer {
                                     System.out.println("Failed to update container! port reached maximum capacity");
 
                                     System.out.print("Return?(Y/N): ");
-                                    String inputResult = input.nextLine().trim();;
+                                    String inputResult = input.nextLine().trim();
 
                                     if(inputResult.equals("Y") || inputResult.equals("y")){
                                         keepRunning = false;

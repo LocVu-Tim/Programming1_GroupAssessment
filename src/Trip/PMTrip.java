@@ -10,11 +10,6 @@ import Vehicle.PMVehicle;
 import interfaces.builders.OptionsInterface;
 import interfaces.builders.PromptsInterface;
 import interfaces.builders.TableInterface;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -62,40 +57,6 @@ public class PMTrip {
         LocalDateTime currentDate = LocalDateTime.now();
         return currentDate.format(formatter);
     }
-    private static boolean checkPortLandingCapacity(String portA, String portB) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("./src/database/PMports.txt"))) {
-            String line;
-            int capacityPortA = 0;
-            int capacityPortB = 0;
-
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 1 && parts[0].trim().equals(portA)) {
-                    // Read and store the landing capacity of Port A
-                    String capacityStr = parts[2].trim();
-                    if (capacityStr.endsWith("Kg")) {
-                        capacityPortA = Integer.parseInt(capacityStr.replaceAll("[^0-9]", ""));
-                    }
-                }
-                if (parts.length >= 1 && parts[0].trim().equals(portB)) {
-                    // Read and store the landing capacity of Port B
-                    String capacityStr = parts[2].trim();
-                    if (capacityStr.endsWith("Kg")) {
-                        capacityPortB = Integer.parseInt(capacityStr.replaceAll("[^0-9]", ""));
-                    }
-                }
-            }
-
-            // Check if the combined capacity of both ports is sufficient
-            int requiredCapacity = 1000; // Adjust this based on your requirements
-
-            return (capacityPortA + capacityPortB) >= requiredCapacity;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return false; // Error occurred or not found
-    }
     public static double calculateFuelConsumption(String[] vehicleParts, double distance, ArrayList<String> containersLines){
         String type;
 
@@ -132,7 +93,7 @@ public class PMTrip {
 
             String[] containerParts = line.split(",");
 
-            String containerType = containerParts[PMContainer.colType-1];
+            String containerType = containerParts[PMContainer.colType-1].trim();
 
             double containerWeight = Tools.stringWeightToDouble(containerParts[PMContainer.colWeight-1]);
 
@@ -141,32 +102,32 @@ public class PMTrip {
                     rate = openTop;
                     break;
                 }
-                case "Refrigerated, refrigerated":{
+                case "Refrigerated", "refrigerated":{
                     rate = refrigerated;
                     break;
                 }
-                case "Dry Storage, dryStorage":{
+                case "Dry Storage", "dryStorage":{
                     rate = dryStorage;
                     break;
                 }
-                case "Open side, openSide":{
+                case "Open side", "openSide":{
                     rate = openSide;
                     break;
                 }
-                case "Liquid, liquid":{
+                case "Liquid", "liquid":{
                     rate = liquid;
                     break;
                 }
             }
 
-            fuelConsumption = fuelConsumption + (distance * (rate + containerWeight));
+            fuelConsumption = fuelConsumption + (distance * (rate * containerWeight));
         }
 
-        return fuelConsumption * 4.546092;
+        return fuelConsumption * 3.78541178;
     }
-    public static void createATrip(PMPort port){
+    public static void createATrip(String portId){
         LineFilters filters = new LineFilters();
-        filters.addFilter(1, port.getId(),FiltersType.EXCLUDE);
+        filters.addFilter(1, portId,FiltersType.EXCLUDE);
 
         TableInterface portsTable = PMPort.createTableFromDatabase(filters);
 
@@ -188,7 +149,7 @@ public class PMTrip {
             canTruckLand = arrivalPortParts[PMPort.colLandingAbility - 1].equals("Truck Available");
 
             filters = new LineFilters();
-            filters.addFilter(PMVehicle.colCurrentPortId,port.getId(),FiltersType.INCLUDE);
+            filters.addFilter(PMVehicle.colCurrentPortId,portId,FiltersType.INCLUDE);
 
             System.out.println(PMVehicle.createTableFromDatabase(filters));
 
@@ -215,7 +176,7 @@ public class PMTrip {
                 }
 
                 if(canUseVehicle){
-                    double portsDistance = PMPort.calculateDistanceBetweenPorts(port.getId(),arrivalPortId);
+                    double portsDistance = PMPort.calculateDistanceBetweenPorts(portId,arrivalPortId);
 
                     ArrayList<String> containersLine = PMContainer.getContainersFromVehicle(vehicleId);
 
@@ -226,7 +187,7 @@ public class PMTrip {
 
                         if(consumption <= vehicleCurrentFuel){
                             String date = getCurrentDate();
-                            String line = vehicleId + "," + date + "," + "null" + "," + port.getId() + "," + arrivalPortId +"," + "Moving";
+                            String line = vehicleId + "," + date + "," + "null" + "," + portId + "," + arrivalPortId + ",Moving";
                             LinesHandler.addLineToDatabase(tripsFilePath, line);
 
                             vehicleParts[PMVehicle.colCurrentPortId - 1] = "null";
@@ -247,9 +208,9 @@ public class PMTrip {
             }
         }
     }
-    public static void completeTrip(PMPort port){
+    public static void completeTrip(String portId){
        LineFilters filters = new LineFilters();
-       filters.addFilter(colArrivedPort,port.getId(),FiltersType.INCLUDE);
+       filters.addFilter(colArrivedPort,portId,FiltersType.INCLUDE);
        filters.addFilter(colStatus,"Landed",FiltersType.EXCLUDE);
 
        System.out.println(createTableFromDatabase(filters));
@@ -272,7 +233,7 @@ public class PMTrip {
             String vehicleLine = LinesHandler.getLinesFromDatabase(PMVehicle.vehiclesFilePath, filters).get(0);
             String[] vehicleParts = vehicleLine.split(",");
 
-            vehicleParts[PMVehicle.colCurrentPortId-1] = port.getId();
+            vehicleParts[PMVehicle.colCurrentPortId-1] = portId;
             tripParts[colStatus-1] = "Landed";
             tripParts[colDateArrived-1] = getCurrentDate();
 
@@ -286,7 +247,7 @@ public class PMTrip {
             filters.addFilter(PMVehicle.colId,vehicleId, FiltersType.INCLUDE);
             LinesHandler.updateLinesFromDatabase(PMVehicle.vehiclesFilePath,String.join(",",vehicleParts),filters);
 
-            System.out.println("Completed trip for " + vehicleId + " arrived to " + port.getId());
+            System.out.println("Completed trip for " + vehicleId + " arrived to " + portId);
         }
     }
     public static void displayAllTripsByGivenDay(){

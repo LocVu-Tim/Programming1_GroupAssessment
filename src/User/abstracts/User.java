@@ -47,8 +47,6 @@ public abstract class User {
 
         LinesHandler.updateLinesFromDatabase(usersFilePath,newLine,filters);
 
-
-
         System.out.println("Password changed successfully.");
         this.password = newPassword;
     }

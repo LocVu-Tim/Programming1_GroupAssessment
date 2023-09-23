@@ -126,8 +126,7 @@ public class PortManagerMenu {
         statisticPanel.addOption(3,"Containers",null, null);
         statisticPanel.addOption(4,"Vehicles",null, null);
         statisticPanel.addOption(5,"Trips",null, null);
-        statisticPanel.addOption(6,"Summary",null, null);
-        statisticPanel.addOption(7,"Go back",null, null);
+        statisticPanel.addOption(6,"Go back",null, null);
 
         controlPanel = new OptionsInterface("controlPanel", "Control Panel", 4);
         controlPanel.addOption(1,"Profile panel",null, profilePanel);
