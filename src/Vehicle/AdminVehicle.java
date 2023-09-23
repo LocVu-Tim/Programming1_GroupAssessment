@@ -82,10 +82,10 @@ public class AdminVehicle {
         }
         // Print out the table contain all the product information.
         TableInterface.setShowVerticalLines(true);
-        TableInterface.setHeaders("ID", "Type", "Carrying Capacity", "Current Fuel", "Fuel Capacity", "Current Port");
+        TableInterface.setHeaders("OPTION", "ID", "Type", "Carrying Capacity", "Current Fuel", "Fuel Capacity", "Current Port");
 
         for (int i = 1; i < user.size(); i++) {
-            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
+            TableInterface.addRow(String.valueOf(i), user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
         }
 
         TableInterface.print();

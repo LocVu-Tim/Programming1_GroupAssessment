@@ -157,9 +157,9 @@ public class Admin extends Account {
         String currentFuel = "0";
         boolean validCurrentFuel = false;
         while(!validCurrentFuel) {
-            System.out.println("Enter current fuel (e.g: 50%): "); // Ask admin to input the vehicle's current fuel
+            System.out.println("Enter current fuel (e.g: 500000L): "); // Ask admin to input the vehicle's current fuel
             String currentFuelInput  = scanner.nextLine();
-            if (!currentFuelInput .contains("%")) { //Check if unit measured was input
+            if (!currentFuelInput .contains("L")) { //Check if unit measured was input
                 System.out.println("Error: Please include current fuel units in % (percentage)"); //Display error if measured unit was not input
             } else {
                 validCurrentFuel = true;
@@ -171,7 +171,7 @@ public class Admin extends Account {
         String fuelCapacity = "0";
         boolean validFuelCapacity = false;
         while(!validFuelCapacity) {
-            System.out.println("Enter fuel capacity (e.g: 50L): "); // Ask admin to input the vehicle's Fuel capacity
+            System.out.println("Enter fuel capacity (e.g: 500000L): "); // Ask admin to input the vehicle's Fuel capacity
             String fuelCapacityInput  = scanner.nextLine();
             if (!fuelCapacityInput .contains("L")) { //Check if unit measured was input
                 System.out.println("Error: Please include capacity units in L (litters)"); //Display error if measured unit was not input
@@ -181,8 +181,18 @@ public class Admin extends Account {
             }
         }
 
-        System.out.println("Enter current port (e.g: Long Khanh) : "); // Ask admin to input the current port of that vehicle
-        String currentPort = scanner.nextLine();
+        String currentPort = "0";
+        boolean validCurrentPort = false;
+        while(!validCurrentPort) {
+            System.out.println("Enter current port (e.g: p-02) : "); // Ask admin to input the vehicle's Fuel capacity
+            String currentPortInput  = scanner.nextLine();
+            if (!currentPortInput .contains("p-")) { //Check if unit measured was input
+                System.out.println("Error: Please input valid port (e.g: p-02"); //Display error if measured unit was not input
+            } else {
+                validCurrentPort = true;
+                currentPort = currentPortInput;
+            }
+        }
 
         printWriter.println(idString + "," + vehicleType + "," + capacity + "," + currentFuel + "," + fuelCapacity + "," + currentPort); // Write vehicle's information to database
         printWriter.close();
