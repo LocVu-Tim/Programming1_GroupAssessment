@@ -3,8 +3,8 @@
 ## Project Files
 - [GitHub Repository](https://github.com/LocVu-Tim/Programming1_GroupAssessment.git)
 - [UML Class Diagram](https://drive.google.com/file/d/1jrBE8GyJVyBArJD0C8ZUnTL5ZnXUAmEX/view?usp=sharing)
-- [Report Paper]()
-- [Video Demonstration]()
+- [Report Paper](https://docs.google.com/document/d/1uYxS5EZlbZpzvR6Z3z8D4BKOdc54ATwrgRNRBkvkpEU/edit?usp=sharing)
+- [Video Demonstration](https://youtu.be/XUNKLv_DwWY)
 
 ## Project Contribution
 | Student Name and Snumber         | Contribution  | Role and Task                   |
