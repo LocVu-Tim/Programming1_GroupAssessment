@@ -35,7 +35,6 @@ IntelliJ IDEA Ultimate 2023
 └── Group_Work/
     └── src/
         ├── Container/
-        │   ├── nice
         │   ├── AdminContainer
         │   ├── ContainerType
         │   └── PMContainer
