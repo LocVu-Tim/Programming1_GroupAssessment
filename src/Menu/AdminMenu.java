@@ -78,9 +78,7 @@ public class AdminMenu {
         System.out.println("2. Vehicles' information");
         System.out.println("3. Containers information");
         System.out.println("4. Trips Information");
-        System.out.println("5. Port managers' information");
-        System.out.println("6. Log out");
-        System.out.println("7. Exit");
+        System.out.println("5. Log out");
 
         Scanner scanner = new Scanner(System.in);
         AdminPort Port = new AdminPort();
@@ -299,8 +297,17 @@ public class AdminMenu {
                 switch (tripOptions) {
                     // Display all trips from the port
                     case "1":
-                        Container.getAllContainerInfo();
-                        TimeUnit.SECONDS.sleep(1);
+                        OptionsInterface portsInterface = PMPort.createOptionsInterfaceForPorts("Choose one port", null);
+                        HashMap<String, String> interfaceData = portsInterface.run(null);
+                        if(!interfaceData.get("option").equals("Return")){
+                            String portLine = interfaceData.get("data");
+                            String[] portParts = portLine.split(",");
+
+                            String portId = portParts[PMPort.colId-1];
+                            LineFilters filters = new LineFilters();
+                            filters.addFilter(PMTrip.colDepartPort, portId, FiltersType.INCLUDE);
+                            System.out.println(PMTrip.createTableFromDatabase(filters));
+                        }
                         adminMenu.viewHomepage();
                     case "2":
                           System.out.println(PMTrip.createTableFromDatabase(null));
@@ -313,8 +320,8 @@ public class AdminMenu {
                          adminMenu.viewHomepage();
                     case "5":
                         // Create new trip
-                        OptionsInterface portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
-                        HashMap<String, String> interfaceData = portsInterface.run(null);
+                        portsInterface = PMPort.createOptionsInterfaceForPorts("What port you want to update?", null);
+                        interfaceData = portsInterface.run(null);
 
                         if(!interfaceData.get("option").equals("Return")){
                             String portLine = interfaceData.get("data");
@@ -341,6 +348,9 @@ public class AdminMenu {
                     case "7":
                         adminMenu.viewHomepage();
                 }
+            case "5":
+                Authentication authentication = new Authentication();
+                authentication.mainMenu();
         }
     }
 }
