@@ -1,7 +1,7 @@
 #ID, Name, Capacity, Landing Ability, Latitude, Longitude
 p-01, District 8,50000Kg,Unavailability,40.730610,-73.935242
 p-02,District 7,100000kg,Truck Available,40.765610,-73.935242
-p-03,Vung Tau,100000kg,UnAvailable,-33.8654,151.2093
-p-04,Phan Thiet,100000kg,Truck Available,51.5074,-0.1278
-p-05,Da Nang,100000kg,Truck Available,-22.9083,-43.1964
-p-06,District 2,10000kg,Truck Available,35.682839,139.759455
+p-03,Vung Tau,100000kg,UnAvailable,40.865610,-73.935242
+p-04,Phan Thiet,100000kg,Truck Available,40.815610,-73.935242
+p-05,Da Nang,100000kg,Truck Available,40.785610,-73.935242
+p-06,District 2,10000kg,Truck Available,40.865610,-73.935242
