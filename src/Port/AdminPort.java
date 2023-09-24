@@ -89,10 +89,10 @@ public class AdminPort {
         }
         // Print out the table contain all the product information.
         TableInterface.setShowVerticalLines(true);
-        TableInterface.setHeaders("ID", "Name", "Capacity", "landing Ability", "Latitude", "Longitude");
+        TableInterface.setHeaders("OPTION", "ID", "Name", "Capacity", "landing Ability", "Latitude", "Longitude");
 
         for (int i = 1; i < user.size(); i++) {
-            TableInterface.addRow(user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
+            TableInterface.addRow(String.valueOf(i), user.get(i)[0], user.get(i)[1], user.get(i)[2], user.get(i)[3], user.get(i)[4], user.get(i)[5]);
         }
 
         TableInterface.print();
