@@ -178,7 +178,7 @@ public class PMVehicle {
     public static OptionsInterface createOptionsInterfaceForVehicles(String name, LineFilters lineFilters) {
         ArrayList<String> lines = LinesHandler.getLinesFromDatabase(vehiclesFilePath,lineFilters);
 
-        int width = Math.min(lines.size() + 1, 5);
+        int width = Math.min(lines.size() + 1, 4);
 
         OptionsInterface vehiclesInterface = new OptionsInterface("vehiclesInterface", name, width);
 
