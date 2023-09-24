@@ -99,15 +99,14 @@ Admin
 ```
 Port Manager 1
 ```bash
-username: loc  
-password: 123456789
-```
-Port Manager 2
-```bash
 username: test  
 password: 123
 ```
-
+Port Manager 2
+```bash
+username: loc  
+password: 123456789
+```
 
 ## Acknowledgement
 - [IntelliJ IDEA | Getting Started](https://www.jetbrains.com/help/idea/getting-started.html)
