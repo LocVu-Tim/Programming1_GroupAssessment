@@ -1,5 +1,5 @@
 #ID, Name, Carrying Capacity, Current Fuel, Fuel Capacity, Current Port ID
-btr-01, Reefer Truck 1, 7000kg,32293.140978213407L, 100000L,p-02
+btr-01, Reefer Truck 1, 7000kg,60.0L, 100000L,p-02
 btr-02, Normal Truck 1, 7000kg,52722.424510724384L, 100000L,p-02
 btr-03, Tanker Truck 1, 7000kg,77691.31498458431L, 100000L,p-02
 btr-04, Reefer Truck 2, 7000kg,100000L, 100000L,p-03
@@ -11,7 +11,7 @@ btr-09, Tanker Truck 3, 7000kg,100000L, 100000L,p-03
 s-01, Ship 1, 9000kg,6116.481286768772L, 200000L,p-06
 s-02, Ship 2, 8000kg, 200000L, 200000L, p-03
 s-03, Ship 3, 9000kg,182321.41942174608L, 200000L,p-03
-s-04, Ship 4, 8000kg, 200000L, 200000L, p-06
+s-04, Ship 4, 8000kg,139892.82603393213L, 200000L,p-02
 s-05, Ship 5, 9000kg, 200000L, 200000L, p-05
 s-06, Ship 6, 8000kg,8035.870035274042L, 200000L,p-03
 s-07, Ship 7, 9000kg, 200000L, 200000L, p-02
